@@ -10,13 +10,13 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-
+    EditText subTotal = (EditText) findViewById(R.id.num1EditText);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText subTotal = (EditText) findViewById(R.id.num1EditText);
+
 //https://www.youtube.com/watch?v=jxoG_Y6dvU8
         subTotal.setOnTouchListener(
                 new View.OnTouchListener() {
