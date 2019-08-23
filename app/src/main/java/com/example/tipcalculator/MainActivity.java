@@ -4,36 +4,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-   EditText subTotal;
+    EditText subTotal;
+    EditText text2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-//https://www.youtube.com/watch?v=jxoG_Y6dvU8
-        subTotal.setOnTouchListener(
-                new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if(event.getAction() == MotionEvent.ACTION_UP){
-                            subTotal = (EditText) findViewById(R.id.num1EditText);
-                            if(subTotal.length() == 0) {
-                                calculate(v);
-                            }
-                            return true;
-                        }
-                        return false;
+        subTotal = (EditText) findViewById(R.id.num1EditText);
+        text2 = (EditText) findViewById(R.id.num2EditText);
+        //https://www.youtube.com/watch?v=jxoG_Y6dvU8
+        //https://developer.android.com/training/graphics/opengl/touch#listener
+        subTotal.setOnClickListener(
+                new EditText.OnClickListener(){
+                    public void onClick(View v){
+                        if(subTotal.length() != 0 && text2.length() != 0)
+                            calculate(v);
                     }
                 }
+
+
         );
     }
+
 
     public void calculate(View v) {
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
