@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    EditText subTotal = (EditText) findViewById(R.id.num1EditText);
+   EditText subTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if(event.getAction() == MotionEvent.ACTION_UP){
-                            if(subTotal.length() == 0)
+                            subTotal = (EditText) findViewById(R.id.num1EditText);
+                            if(subTotal.length() == 0) {
                                 calculate(v);
-
+                            }
                             return true;
                         }
                         return false;
