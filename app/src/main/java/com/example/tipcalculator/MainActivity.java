@@ -32,30 +32,51 @@ public class MainActivity extends AppCompatActivity {
 
 
         );
+
+        text2.setOnClickListener(
+                new EditText.OnClickListener(){
+                    public void onClick(View v){
+                        if(subTotal.length() != 0 && text2.length() != 0)
+                            calculate(v);
+                    }
+                }
+
+
+        );
+
     }
 
 
     public void calculate(View v) {
-        DecimalFormat df = new DecimalFormat("#,###,##0.00");
 
-        //Get references to all elements on app screen
-        EditText num1EditText = (EditText) findViewById(R.id.num1EditText);
-        EditText num2EditText = (EditText) findViewById(R.id.num2EditText);
-        TextView ansTextView = (TextView) findViewById(R.id.ansTextView);
-        TextView ans2TextView = (TextView) findViewById(R.id.ans2TextView);
+        try {
+            DecimalFormat df = new DecimalFormat("#,###,##0.00");
+
+            //Get references to all elements on app screen
+            EditText num1EditText = (EditText) findViewById(R.id.num1EditText);
+            EditText num2EditText = (EditText) findViewById(R.id.num2EditText);
+            TextView ansTextView = (TextView) findViewById(R.id.ansTextView);
+            TextView ans2TextView = (TextView) findViewById(R.id.ans2TextView);
 
 
-        //Get the values from the EditText boxes and convert them to int data types
-        double bill = Double.parseDouble(num1EditText.getText().toString());
-        double tip = Double.parseDouble(num2EditText.getText().toString());
-        tip /= 100;
+            //Get the values from the EditText boxes and convert them to int data types
+            double bill = Double.parseDouble(num1EditText.getText().toString());
+            double tip = Double.parseDouble(num2EditText.getText().toString());
+            tip /= 100;
 
-        //Add the text for the answer
-        double tipAmount = bill * tip;
-        double totalBill = bill + tipAmount;
+            //Add the text for the answer
+            double tipAmount = bill * tip;
+            double totalBill = bill + tipAmount;
 
-        ansTextView.setText("Tip: $" + df.format(tipAmount));
-        ans2TextView.setText("Total Bill: $" + df.format(totalBill));
+            ansTextView.setText("Tip: $" + df.format(tipAmount));
+            ans2TextView.setText("Total Bill: $" + df.format(totalBill));
+        }
+        catch(Exception e){
+            TextView ansTextView = (TextView) findViewById(R.id.ansTextView);
+            TextView ans2TextView = (TextView) findViewById(R.id.ans2TextView);
+            ansTextView.setText("Tip: $0");
+            ans2TextView.setText("Total Bill: $0");
+        }
     }
 
     // https://stackoverflow.com/questions/11690504/how-to-use-view-ontouchlistener-instead-of-onclick
